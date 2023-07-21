@@ -1,0 +1,5 @@
+DB_HOST=Database Host
+PORT=3000
+SECRET_KEY=key
+SENDGRID_API_KEY=sengrid key for setting api key
+BASE_URL=base url (localhost)
