@@ -1,8 +1,13 @@
-const { isValidObjectId } = require("mongoose");
+import { isValidObjectId } from "mongoose";
+import { Request, Response, NextFunction } from "express";
 
-const { HttpError } = require("../helpers");
+import { HttpError } from "../helpers";
 
-const isValidId = (req, res, next) => {
+const isValidId = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void | never => {
   const { id } = req.params;
   if (!isValidObjectId(id)) {
     next(HttpError(400, `${id} is not valid id`));
