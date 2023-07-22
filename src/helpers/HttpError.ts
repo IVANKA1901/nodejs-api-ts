@@ -5,7 +5,7 @@ const errorMessagesList = {
   403: "Forbidden",
   404: "Not Found",
 };
-const HttpError = (status, message = errorMessagesList[status]) => {
+const HttpError = (status: number, message = errorMessagesList[status]) => {
   const error = new Error(message);
   error.status = status;
   return error;
