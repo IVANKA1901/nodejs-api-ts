@@ -14,5 +14,9 @@ export interface ISubscription {
 export interface IUserAuth {
   email: string;
   password: string;
+  token: string;
   subscription?: "starter" | "pro" | "business";
+  avatarURL?: string;
+  verify: boolean;
+  verificationToken: string;
 }
