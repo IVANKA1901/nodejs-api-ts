@@ -1,14 +1,25 @@
-const errorMessagesList = {
+interface ErrorMessages {
+  [status: number]: string;
+}
+const errorMessagesList: ErrorMessages = {
   400: "Bad Request",
   401: "Unauthorized",
-  409: "Conflict",
   403: "Forbidden",
-  404: "Not Found",
+  404: "Not found",
+  409: "Conflict",
 };
-const HttpError = (status: number, message = errorMessagesList[status]) => {
-  const error = new Error(message);
+
+interface RequestError extends Error {
+  status?: number;
+}
+
+const HttpError = (
+  status: number,
+  message: string = errorMessagesList[status]
+): RequestError => {
+  const error: RequestError = new Error(message);
   error.status = status;
   return error;
 };
 
-module.exports = HttpError;
+export default HttpError;
