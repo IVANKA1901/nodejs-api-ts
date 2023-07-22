@@ -1,11 +1,12 @@
-const multer = require("multer");
-const path = require("path");
+import { Request } from "express";
+import multer from "multer";
+import path from "path";
 
 const tempDir = path.join(__dirname, "../", "temp");
 
 const multerConfig = multer.diskStorage({
   destination: tempDir,
-  filename: (req, file, cb) => {
+  filename: (req: Request, file, cb): void => {
     cb(null, file.originalname);
   },
 });
