@@ -1,7 +1,9 @@
-const { HttpError } = require("../helpers");
+import { Request, Response, NextFunction } from "express";
 
-const validateBody = (schema) => {
-  const func = (req, res, next) => {
+import { HttpError } from "../helpers";
+
+const validateBody = (schema: any) => {
+  const func = (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body);
     if (error) {
       next(HttpError(400, "missing required name field"));
@@ -11,4 +13,4 @@ const validateBody = (schema) => {
   return func;
 };
 
-module.exports = validateBody;
+export default validateBody;
