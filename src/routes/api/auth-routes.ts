@@ -1,7 +1,9 @@
-const express = require("express");
+// const express = require("express");
 const router = express.Router();
+import express from "express";
 
 const ctrl = require("../../controllers/user-controller");
+// import ctrl from "../../controllers/user-controller";
 const { validateBody, authenticate, upload } = require("../../middlewares");
 const { schemas } = require("../../validators/user-validators");
 
