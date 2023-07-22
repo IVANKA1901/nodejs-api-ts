@@ -1,13 +1,20 @@
-const sgMail = require("@sendgrid/mail");
+import sgMail from "@sendgrid/mail";
 
-const { SENDGRID_API_KEY } = require("../configs/envConfig");
+import { envConfig } from "../configs/envConfig";
 
-sgMail.setApiKey(SENDGRID_API_KEY);
+sgMail.setApiKey(envConfig.SENDGRID_API_KEY);
 
-const sendEmail = async (data) => {
+interface Data {
+  to: string;
+  from: string;
+  text: string;
+  html: string;
+  subject: string;
+}
+const sendEmail = async (data: Data) => {
   const email = { ...data, from: "ivankafromel@gmail.com" };
   await sgMail.send(email);
   return true;
 };
 
-module.exports = sendEmail;
+export default sendEmail;
