@@ -1,8 +1,9 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const { handleMongooseError } = require("../helpers");
+import { handleMongooseError } from "../helpers";
+import { IUserAuth } from "../interfaces/user-validators";
 
-const userSchema = new Schema(
+const userSchema = new Schema<IUserAuth>(
   {
     password: {
       type: String,
@@ -36,8 +37,6 @@ const userSchema = new Schema(
 
 userSchema.post("save", handleMongooseError);
 
-const User = model("user", userSchema);
+const User = model<IUserAuth>("user", userSchema);
 
-module.exports = {
-  User,
-};
+export default User;
