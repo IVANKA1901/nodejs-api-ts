@@ -8,5 +8,3 @@ export const envConfig = {
   SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ?? "",
   BASE_URL: process.env.BASE_URL ?? "",
 };
-
-// module.exports = envConfig;
