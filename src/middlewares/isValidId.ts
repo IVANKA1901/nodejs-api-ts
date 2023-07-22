@@ -15,4 +15,4 @@ const isValidId = (
   next();
 };
 
-module.exports = isValidId;
+export default isValidId;
