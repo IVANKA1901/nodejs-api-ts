@@ -1,5 +1,9 @@
-const ctrlWrapper = (ctrl) => {
-  const func = async (req, res, next) => {
+import { NextFunction, Request, Response } from "express";
+
+const ctrlWrapper = (
+  ctrl: (req: Request, res: Response, next: NextFunction) => void
+) => {
+  const func = async (req: Request, res: Response, next: NextFunction) => {
     try {
       await ctrl(req, res, next);
     } catch (error) {
@@ -9,4 +13,4 @@ const ctrlWrapper = (ctrl) => {
   return func;
 };
 
-module.exports = ctrlWrapper;
+export default ctrlWrapper;
