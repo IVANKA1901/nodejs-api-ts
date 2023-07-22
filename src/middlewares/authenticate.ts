@@ -1,18 +1,32 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import { Response, Request, NextFunction } from "express";
 
-const { HttpError } = require("../helpers/HttpError");
-const { User } = require("../models/user-model");
+import { HttpError } from "../helpers";
+import User from "../models/user-model";
 
-const { SECRET_KEY } = require("../configs/envConfig");
+import { envConfig } from "../configs/envConfig";
+import { IUserAuth } from "interfaces";
 
-const authenticate = async (req, res, next) => {
+interface IPayload {
+  id?: string;
+}
+
+interface IRequest extends Request {
+  user?: IUserAuth | null;
+}
+
+const authenticate = async (
+  req: IRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { authorization = "" } = req.headers;
   const [bearer, token] = authorization.split(" ");
   if (bearer !== "Bearer") {
     next(HttpError(401));
   }
   try {
-    const { id } = jwt.verify(token, SECRET_KEY);
+    const { id } = jwt.verify(token, envConfig.SECRET_KEY) as IPayload;
     const user = await User.findById(id);
     if (!user || !user.token || user.token !== token) {
       next(HttpError(401));
@@ -24,4 +38,4 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-module.exports = authenticate;
+export default authenticate;
