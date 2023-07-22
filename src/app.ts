@@ -23,10 +23,21 @@ app.use((req: Request, res: Response): void => {
   res.status(404).json({ message: "Not found" });
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction): void => {
-  const { status = 500, message = "Server Error" } = err;
-  res.status(status).json({ message });
-});
+interface RequestError extends Error {
+  status?: number;
+}
+
+app.use(
+  (
+    err: RequestError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    const { status = 500, message = "Server Error" } = err;
+    res.status(status).json({ message });
+  }
+);
 
 // module.exports = app;
 export default app;

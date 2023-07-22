@@ -14,7 +14,7 @@ mongoose
       console.log(`Server running. Use our API on port: ${envConfig.PORT}`);
     });
   })
-  .catch((error) => {
+  .catch((error): void => {
     console.log(error.message);
     process.exit(1);
   });
