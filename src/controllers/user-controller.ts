@@ -162,16 +162,10 @@ const updateSubscription = async (
     }
   );
 
-  if (result !== null) {
-    res.status(200).json({
-      message: "Subscription successfully changed",
-      subscription: result.subscription,
-    });
-  } else {
-    res.status(404).json({
-      message: "User not found",
-    });
-  }
+  res.status(200).json({
+    message: "Subscription successfully changed",
+    subscription: result?.subscription,
+  });
 };
 
 const updateAvatar = async (
