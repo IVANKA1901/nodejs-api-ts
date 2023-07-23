@@ -1,20 +1,25 @@
-const { Contact } = require("../models/contact-model");
-const { HttpError, ctrlWrapper } = require("../helpers");
+import { HttpError, ctrlWrapper } from "helpers";
+import { IGetAll, IGetByID, IRequest } from "interfaces";
+import Contact from "models/contact-model";
 
-const getAll = async (req, res) => {
+const getAll = async (req: IRequest, res: Response): Promise<void> | never => {
   const { _id: owner } = req.user;
   const { page = 1, limit = 20 } = req.query;
   const skip = (page - 1) * limit;
-  const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
-    skip,
-    limit,
-  }).populate("owner", "email");
+  const result: IGetAll = await Contact.find(
+    { owner },
+    "-createdAt -updatedAt",
+    {
+      skip,
+      limit,
+    }
+  ).populate("owner", "email");
   res.json(result);
 };
 
-const getById = async (req, res) => {
+const getById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await Contact.findById(id);
+  const result: IGetByID | null = await Contact.findById(id);
   if (!result) {
     throw HttpError(404, "Not Found");
   }
@@ -47,7 +52,7 @@ const updateById = async (req, res) => {
   res.status(200).json(result);
 };
 
-const updateFavorite = async (req, res) => {
+const updateFavorite = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
@@ -56,7 +61,7 @@ const updateFavorite = async (req, res) => {
   res.status(200).json(result);
 };
 
-module.exports = {
+export const contactsController = {
   getAll: ctrlWrapper(getAll),
   getById: ctrlWrapper(getById),
   addContact: ctrlWrapper(addContact),
