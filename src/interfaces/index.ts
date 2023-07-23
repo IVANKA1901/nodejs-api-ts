@@ -3,5 +3,6 @@
  * Do not modify this file manually
  */
 
-export * from './contact-validators';
-export * from './user-validators';
+export * from "./contact-validators";
+export * from "./user-validators";
+export * from "./request.validators";
