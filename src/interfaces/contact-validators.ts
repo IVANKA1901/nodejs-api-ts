@@ -8,6 +8,7 @@ export interface IAddContact {
   favorite?: boolean;
   name: string;
   phone: string;
+  owner?: any;
 }
 
 export interface IUpdateFavorite {
