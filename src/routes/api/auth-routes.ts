@@ -1,15 +1,18 @@
 import express from "express";
 
-const router = express.Router();
-
 import { userControllers } from "../../controllers/user-controller";
-// import ctrl from "../../controllers/user-controller";
-const { validateBody, authenticate, upload } = require("../../middlewares");
-const { schemas } = require("../../validators/user-validators");
+import { authenticate, upload, validateBody } from "middlewares";
+import {
+  emailSchema,
+  subscriptionSchema,
+  userAuthSchema,
+} from "validators/user-validators";
+
+const router = express.Router();
 
 router.post(
   "/register",
-  validateBody(schemas.userAuthSchema, "missing fields"),
+  validateBody(userAuthSchema),
   userControllers.registerUser
 );
 
@@ -17,15 +20,11 @@ router.get("/verify/:verificationToken", userControllers.verifyEmail);
 
 router.post(
   "/verify",
-  validateBody(schemas.emailSchema),
+  validateBody(emailSchema),
   userControllers.resendVerifyEmail
 );
 
-router.post(
-  "/login",
-  validateBody(schemas.userAuthSchema, "missing fields"),
-  userControllers.loginUser
-);
+router.post("/login", validateBody(userAuthSchema), userControllers.loginUser);
 
 router.post("/logout", authenticate, userControllers.logoutUser);
 
@@ -34,7 +33,7 @@ router.get("/current", authenticate, userControllers.getCurrentUser);
 router.patch(
   "/",
   authenticate,
-  validateBody(schemas.subscriptionSchema, "missing fields"),
+  validateBody(subscriptionSchema),
   userControllers.updateSubscription
 );
 

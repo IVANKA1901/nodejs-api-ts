@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "start": "cross-env NODE_ENV=production node ./server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "start:dev": "nodemon",
+    "start:dev": "nodemon ./dist/app",
     "dev": "nodemon ./src/index.ts --watch ./src --onChange \" rimraf dist\" ",
     "build": "tsc",
     "lint": "eslint --cache --ext .js,.ts src",

@@ -3,6 +3,8 @@
  * Do not modify this file manually
  */
 
+import { Types } from "mongoose";
+
 export interface IEmail {
   email: string;
 }
@@ -12,7 +14,7 @@ export interface ISubscription {
 }
 
 export interface IUserAuth {
-  _id: string;
+  _id?: Types.ObjectId;
   email: string;
   password: string;
   token: string;

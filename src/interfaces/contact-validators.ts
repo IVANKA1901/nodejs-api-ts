@@ -3,14 +3,15 @@
  * Do not modify this file manually
  */
 
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 
 export interface IAddContact {
   email: string;
-  favorite?: boolean;
   name: string;
   phone: string;
-  owner?: any;
+  favorite?: boolean;
+
+  owner?: Types.ObjectId;
 }
 
 export interface IUpdateFavorite {
@@ -18,24 +19,21 @@ export interface IUpdateFavorite {
 }
 
 export interface IGetAll extends Document {
-  _id?: any;
-  owner?: any;
+  _id?: Types.ObjectId;
+  owner?: Types.ObjectId;
   name: string;
   email: string;
   phone: string;
-  favorite: boolean;
-  user?: string;
-  file?: string;
-  query?: any;
+  favorite?: boolean;
 }
-export interface IRequest extends Document {
-  user: IGetAll;
-  query?: any;
-}
+// export interface IRequest extends Document {
+//   user: IGetAll;
+//   query?: any;
+// }
 
 export interface IGetByID extends Document {
   name: string;
   email: string;
   phone: string;
-  favorite: boolean;
+  favorite?: boolean;
 }
