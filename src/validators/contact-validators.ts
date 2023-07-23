@@ -18,12 +18,3 @@ export const updateFavoriteSchema = Joi.object({
     "any.required": "missing field favorite",
   }),
 }).meta({ className: "IUpdateFavorite" });
-
-// module.exports = {
-//   addSchema,
-//   updateFavoriteSchema,
-// };
-
-// module.exports = {
-//   schemas,
-// };

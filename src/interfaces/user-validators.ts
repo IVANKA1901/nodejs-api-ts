@@ -12,6 +12,7 @@ export interface ISubscription {
 }
 
 export interface IUserAuth {
+  _id: string;
   email: string;
   password: string;
   token: string;
