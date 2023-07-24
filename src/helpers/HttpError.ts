@@ -1,6 +1,3 @@
-interface ErrorMessages {
-  [status: number]: string;
-}
 const errorMessagesList: ErrorMessages = {
   400: "Bad Request",
   401: "Unauthorized",
@@ -8,6 +5,10 @@ const errorMessagesList: ErrorMessages = {
   404: "Not found",
   409: "Conflict",
 };
+
+interface ErrorMessages {
+  [status: number]: string;
+}
 
 interface RequestError extends Error {
   status?: number;

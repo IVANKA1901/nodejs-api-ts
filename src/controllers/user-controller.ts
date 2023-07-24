@@ -29,7 +29,6 @@ const registerUser = async (
   res: Response
 ): Promise<void> | never => {
   const { email, password } = req.body;
-
   const user: IRegister | null = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email in use");
@@ -37,22 +36,18 @@ const registerUser = async (
   const hashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email, { s: "250" });
   const verificationToken = nanoid();
-
   const result: IUserAuth = await User.create({
     ...req.body,
     password: hashPassword,
     avatarURL,
     verificationToken,
   });
-
   const verifyEmail = {
     to: email,
     subject: "Verify Email",
     html: `<a target="_new" href="${envConfig.BASE_URL}/api/auth/verify/${verificationToken}">Click verify email</a>`,
   };
-
   await sendEmail(verifyEmail);
-
   res.status(201).json({
     user: {
       email: result.email,
