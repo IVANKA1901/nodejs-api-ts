@@ -7,15 +7,15 @@ import path from "path";
 import fs from "fs/promises";
 import { nanoid } from "nanoid";
 
-import User from "models/user-model";
-import { HttpError, ctrlWrapper, sendEmail } from "helpers";
-import { envConfig } from "configs/envConfig";
+import User from "../models/user-model";
+import { HttpError, ctrlWrapper, sendEmail } from "../helpers";
+import { envConfig } from "../configs/envConfig";
 import {
   ISubscription,
   IUserAuth,
   IRequest,
   IRequestCurrent,
-} from "interfaces";
+} from "../interfaces";
 
 const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 

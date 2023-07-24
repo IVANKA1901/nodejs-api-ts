@@ -17,9 +17,9 @@ export interface IUserAuth {
   _id?: Types.ObjectId;
   email: string;
   password: string;
-  token: string;
+  token?: string;
   subscription?: "starter" | "pro" | "business";
   avatarURL?: string;
-  verify: boolean;
-  verificationToken: string;
+  verify?: boolean;
+  verificationToken?: string;
 }

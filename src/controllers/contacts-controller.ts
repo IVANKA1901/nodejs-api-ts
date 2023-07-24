@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { Types } from "mongoose";
 
-import { HttpError, ctrlWrapper } from "helpers";
-import { IAddContact, IGetAll, IGetByID, IUpdateFavorite } from "interfaces";
-import Contact from "models/contact-model";
+import { HttpError, ctrlWrapper } from "../helpers";
+import { IAddContact, IGetAll, IGetByID, IUpdateFavorite } from "../interfaces";
+import Contact from "../models/contact-model";
 
 interface IRequest extends Request {
   user?: { _id?: Types.ObjectId };

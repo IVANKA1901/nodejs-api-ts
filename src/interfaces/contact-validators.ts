@@ -26,10 +26,6 @@ export interface IGetAll extends Document {
   phone: string;
   favorite?: boolean;
 }
-// export interface IRequest extends Document {
-//   user: IGetAll;
-//   query?: any;
-// }
 
 export interface IGetByID extends Document {
   name: string;

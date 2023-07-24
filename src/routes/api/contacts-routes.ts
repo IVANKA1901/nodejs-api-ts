@@ -1,12 +1,11 @@
 import express from "express";
 
-import { authenticate, isValidId, validateBody } from "middlewares";
-import { addSchema, updateFavoriteSchema } from "validators/contact-validators";
+import { authenticate, isValidId, validateBody } from "../../middlewares";
+import {
+  addSchema,
+  updateFavoriteSchema,
+} from "../../validators/contact-validators";
 import { contactsController } from "../../controllers/contacts-controller";
-
-// const ctrl = require("../../controllers/contacts-controller");
-// const { validateBody, isValidId, authenticate } = require("../../middlewares");
-// const { schemas } = require("../../validators/contact-validators");
 
 const router = express.Router();
 

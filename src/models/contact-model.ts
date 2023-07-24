@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 import { handleMongooseError } from "../helpers";
-import { IAddContact } from "interfaces";
+import { IAddContact } from "../interfaces";
 
 const contactSchema = new Schema<IAddContact>(
   {

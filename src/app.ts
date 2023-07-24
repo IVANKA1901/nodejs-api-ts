@@ -3,8 +3,8 @@ import logger from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 
-const contactsRouter = require("./routes/api/contacts-routes");
-const authRouter = require("./routes/api/auth-routes");
+import contactsRouter from "./routes/api/contacts-routes";
+import authRouter from "./routes/api/auth-routes";
 
 const app = express();
 dotenv.config();

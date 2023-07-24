@@ -1,12 +1,12 @@
 import express from "express";
 
 import { userControllers } from "../../controllers/user-controller";
-import { authenticate, upload, validateBody } from "middlewares";
+import { authenticate, upload, validateBody } from "../../middlewares";
 import {
   emailSchema,
   subscriptionSchema,
   userAuthSchema,
-} from "validators/user-validators";
+} from "../../validators/user-validators";
 
 const router = express.Router();
 
