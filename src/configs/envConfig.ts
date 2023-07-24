@@ -3,7 +3,7 @@ dotenv.config();
 
 export const envConfig = {
   DB_HOST: process.env.DB_HOST ?? "",
-  PORT: Number(process.env.PORT || 3000),
+  PORT: Number(process.env.PORT || 4000),
   SECRET_KEY: process.env.SECRET_KEY ?? "",
   SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ?? "",
   BASE_URL: process.env.BASE_URL ?? "",

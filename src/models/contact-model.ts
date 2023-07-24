@@ -31,6 +31,6 @@ const contactSchema = new Schema<IAddContact>(
 
 contactSchema.post("save", handleMongooseError);
 
-const Contact = model<IAddContact>("contact", contactSchema);
+const Contact = model("contact", contactSchema);
 
 export default Contact;

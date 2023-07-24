@@ -19,13 +19,18 @@ import {
 
 const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 
+interface IRegister {
+  email: string;
+  password: string;
+}
+
 const registerUser = async (
   req: Request,
   res: Response
 ): Promise<void> | never => {
   const { email, password } = req.body;
 
-  const user: IUserAuth | null = await User.findOne({ email });
+  const user: IRegister | null = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email in use");
   }
